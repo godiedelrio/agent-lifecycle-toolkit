@@ -2,6 +2,19 @@
 
 <!-- version list -->
 
+## v0.6.0 (2025-11-18)
+
+### Chores
+
+- Move toolops to the build lifecycle stage
+  ([#67](https://github.com/AgentToolkit/agent-lifecycle-toolkit/pull/67),
+  [`b88907e`](https://github.com/AgentToolkit/agent-lifecycle-toolkit/commit/b88907ea2c2ba42f49271f45ccf41db77904bfaa))
+
+### Breaking Changes
+
+- Toolops import will break for previous usage
+
+
 ## v0.5.0 (2025-11-18)
 
 ### Bug Fixes
