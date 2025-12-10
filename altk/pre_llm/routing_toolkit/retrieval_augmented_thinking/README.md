@@ -12,6 +12,7 @@ A middleware solution to improve routing accuracy for manager agents that contai
 - [Topic Extraction](#topic-extraction)
 - [Topic Loading](#topic-loading)
 - [Topic Retrieval](#topic-retrieval)
+- [License](#license)
 
 ## Overview
 
@@ -859,3 +860,6 @@ topic_retriever_ouput: TopicRetrievalRunOutput = topic_retriever.process(
     phase=AgentPhase.RUNTIME,
 )
 ```
+
+## License
+Apache 2.0 - see LICENSE file for details.
