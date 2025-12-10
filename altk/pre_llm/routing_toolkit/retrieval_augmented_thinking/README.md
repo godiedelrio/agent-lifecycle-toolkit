@@ -43,7 +43,7 @@ Simply select a RAT-enabled WxO Style for your agent to leverage Retrieval-Augme
 
 **Flow Diagram**
 
-TODO: upload diagram
+<img src="../../../docs/assets/img_rat_architecture.png" />
 
 ## Sample Results
 
