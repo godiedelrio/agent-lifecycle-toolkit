@@ -136,6 +136,8 @@ pre_llm = [
     "torch==2.2.2 ; sys_platform == 'darwin' and platform_machine == 'x86_64'",
     "torch>=2.5.1 ; sys_platform != 'darwin' or platform_machine != 'x86_64'",
     "transformers>=4.53.3",
+    "pymilvus[milvus-lite,model]>=2.6.2",
+    "pydash>=8.0.5",
 ]
 
 pre_response = []
