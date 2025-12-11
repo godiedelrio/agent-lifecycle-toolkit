@@ -52,6 +52,12 @@ The Agent Lifecycle Toolkit helps agent builders create better performing agents
 <br> [RAG Repair](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/post_tool/rag_repair) repairs failed tool calls using domain-specific documents via Retrieval-Augmented Generation.
 - *Does your agent return responses that violate policies or instructions?*
 <br> [Policy Guard](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/pre_response/policy_guard) ensures agent outputs comply with defined policies and repairs them if needed.
+- *Does your tool have clear metadata or docstrings for the agent?*
+<br> [Tool Enrichment](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/build_time/tool_enrichment_toolkit) generates tool and parameter descriptions to enhance tool calling.
+- *Has your agent been tested to call the correct tool with the right arguments?*
+<br> [Test Case Generation](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/build_time/test_case_generation_toolkit) generates user utterances to test its behavior across a variety of scenarios.
+- *Does your agent call the correct tool with the right arguments for these test cases?*
+<br> [Tool Validation](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/build_time/tool_validation_toolkit) invokes the agent with test utterances and identify different types of tool-selection and argument-related errors.
 
 ## Installation
 To use ALTK, simply install agent-lifecycle-toolkit from your package manager, e.g. pip:
