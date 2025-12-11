@@ -85,6 +85,7 @@ nav:
       - Summary: concepts/components/summary.md
     - Components:
         - Spotlight: concepts/components/spotlight.md
+        - Retrieval Augmented Thinking: concepts/components/rat.md
         - Refraction: concepts/components/refraction.md
         - SPARC: concepts/components/sparc.md
         - Silent Review: concepts/components/silent-review.md
