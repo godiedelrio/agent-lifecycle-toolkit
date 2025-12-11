@@ -3,10 +3,8 @@ from typing import Set
 
 from pydantic import ConfigDict
 
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
-    EmbeddedTopic,
-    TopicInfo,
-    TopicLoadingInput,
+from altk.pre_llm.core.types import EmbeddedTopic, TopicInfo, TopicLoadingInput
+from altk.pre_llm.core.types import (
     TopicsSink,
 )
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_extractor.topic_extractor import (

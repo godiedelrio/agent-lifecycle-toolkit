@@ -12,11 +12,9 @@ from typing import (
 )
 from altk.core.toolkit import AgentPhase, ComponentBase, ComponentInput
 from pydantic import ConfigDict
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
+from altk.pre_llm.core.types import TopicExtractionBuildOutput, TopicInfo, TopicsSink
+from altk.pre_llm.core.types import (
     ContentProvider,
-    TopicInfo,
-    TopicsSink,
-    TopicExtractionBuildOutput,
 )
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_extractor.settings import (
     TopicExtractionSettings,

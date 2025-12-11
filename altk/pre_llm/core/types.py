@@ -16,6 +16,8 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from altk.core.toolkit import ComponentInput, ComponentOutput
 
+T = TypeVar("T")
+
 
 class TopicInfo(BaseModel):
     topic: str = Field(description="Text that describes the topic")
@@ -58,9 +60,6 @@ class EmbeddedTopic(BaseModel):
 class RetrievedTopic(BaseModel):
     topic: TopicInfo
     distance: float
-
-
-T = TypeVar("T")
 
 
 class TopicExtractionBuildOutput(ComponentOutput, Generic[T]):

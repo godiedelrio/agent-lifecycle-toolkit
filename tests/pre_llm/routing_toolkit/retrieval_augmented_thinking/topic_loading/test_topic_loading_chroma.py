@@ -6,18 +6,20 @@ from chromadb.api import ClientAPI
 from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
 from sentence_transformers import SentenceTransformer
 
+from altk.pre_llm.core.types import (
+    EmbeddedTopic,
+    RetrievedTopic,
+    TopicInfo,
+    TopicLoadingInput,
+    TopicRetrievalRunInput,
+)
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.topic_retriever import (
     ChromaDBTopicRetriever,
 )
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.topic_sink_content_provider import (
     ChromaDBProvider,
 )
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
-    EmbeddedTopic,
-    RetrievedTopic,
-    TopicInfo,
-    TopicLoadingInput,
-    TopicRetrievalRunInput,
+from altk.pre_llm.core.types import (
     TopicRetrievalRunOutput,
 )
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_loading.topic_loading import (

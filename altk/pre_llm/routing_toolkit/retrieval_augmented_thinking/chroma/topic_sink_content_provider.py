@@ -13,6 +13,7 @@ from chromadb.errors import NotFoundError
 from chromadb.utils.batch_utils import create_batches
 from pydantic import Field
 
+from altk.pre_llm.core.types import TopicInfo
 from altk.pre_llm.routing_toolkit.elapsed_time_logger import processing_time_logger
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.common import (
     ChromaDBConfig,
@@ -20,9 +21,8 @@ from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.common imp
     LocalChromaDBConfig,
     RemoteChromaDBConfig,
 )
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
+from altk.pre_llm.core.types import (
     EmbeddedTopic,
-    TopicInfo,
 )
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_extractor.topic_extractor import (
     TopicExtractionMiddleware,

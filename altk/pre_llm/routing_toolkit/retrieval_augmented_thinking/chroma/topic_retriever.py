@@ -7,6 +7,7 @@ from chromadb import QueryResult
 from chromadb.api import ClientAPI
 from chromadb.config import DEFAULT_DATABASE, Settings
 
+from altk.pre_llm.core.types import RetrievedTopic, TopicInfo
 from altk.pre_llm.routing_toolkit.elapsed_time_logger import processing_time_logger
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.common import (
     ChromaDBConfig,
@@ -14,9 +15,7 @@ from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.common imp
     LocalChromaDBConfig,
     RemoteChromaDBConfig,
 )
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
-    RetrievedTopic,
-    TopicInfo,
+from altk.pre_llm.core.types import (
     TopicRetriever,
 )
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_retriever import (

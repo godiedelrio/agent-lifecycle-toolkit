@@ -4,7 +4,7 @@ from pathlib import Path
 import pytest
 from pymilvus import model
 
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
+from altk.pre_llm.core.types import (
     TopicInfo,
 )
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.milvus.common import (

@@ -3,9 +3,8 @@ from typing import Dict, Set, Type
 
 from pydantic import ConfigDict
 
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
-    TopicRetrievalRunInput,
-    TopicRetrievalRunOutput,
+from altk.pre_llm.core.types import TopicRetrievalRunInput, TopicRetrievalRunOutput
+from altk.pre_llm.core.types import (
     TopicRetriever,
 )
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_retriever.settings import (

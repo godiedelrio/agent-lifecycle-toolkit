@@ -6,10 +6,10 @@ from warnings import warn
 from pymilvus import DataType, Function, FunctionType, MilvusClient
 from pymilvus.model.base import BaseEmbeddingFunction
 
+from altk.pre_llm.core.types import TopicInfo
 from altk.pre_llm.routing_toolkit.elapsed_time_logger import processing_time_logger
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
+from altk.pre_llm.core.types import (
     EmbeddedTopic,
-    TopicInfo,
 )
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.milvus.common import (
     AnnSearchConfig,

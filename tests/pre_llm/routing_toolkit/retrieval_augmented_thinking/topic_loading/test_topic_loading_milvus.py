@@ -3,12 +3,14 @@ from typing import List
 
 import pytest
 
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
+from altk.pre_llm.core.types import (
     EmbeddedTopic,
     RetrievedTopic,
     TopicInfo,
     TopicLoadingInput,
     TopicRetrievalRunInput,
+)
+from altk.pre_llm.core.types import (
     TopicRetrievalRunOutput,
 )
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.milvus.topic_retriever import (

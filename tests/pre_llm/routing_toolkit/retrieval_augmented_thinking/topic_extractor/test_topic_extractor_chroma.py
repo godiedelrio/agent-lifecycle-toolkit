@@ -6,6 +6,7 @@ import pytest
 from chromadb import GetResult
 from chromadb.api import ClientAPI
 
+from altk.pre_llm.core.types import TopicInfo
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.common import (
     EphemeralChromaDBConfig,
 )
@@ -15,9 +16,8 @@ from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.topic_sink
     ChromaDBProvider,
     ChromaDBProviderSettings,
 )
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
+from altk.pre_llm.core.types import (
     TopicExtractionBuildOutput,
-    TopicInfo,
 )
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_extractor.llm import (
     LLMTopicExtractor,

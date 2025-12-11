@@ -1,4 +1,4 @@
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
+from altk.pre_llm.core.types import (
     TopicInfo,
 )
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_extractor.llm import (

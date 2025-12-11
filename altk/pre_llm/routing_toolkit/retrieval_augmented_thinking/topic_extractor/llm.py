@@ -7,10 +7,9 @@ import os
 import time
 from typing import Dict, List, Optional
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
+from altk.pre_llm.core.types import TopicExtractionBuildOutput, TopicInfo
+from altk.pre_llm.core.types import (
     ContentProvider,
-    TopicExtractionBuildOutput,
-    TopicInfo,
 )
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_extractor.settings import (
     LLMTopicExtractorSettings,

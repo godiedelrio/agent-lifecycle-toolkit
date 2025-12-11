@@ -3,9 +3,9 @@ from pathlib import Path
 from pymilvus import MilvusClient, model
 import pytest
 
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
+from altk.pre_llm.core.types import TopicInfo
+from altk.pre_llm.core.types import (
     EmbeddedTopic,
-    TopicInfo,
 )
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.milvus.common import (
     AnnSearchConfig,

@@ -2,10 +2,10 @@ import logging
 import os
 from typing import Any, Dict, List
 from pymilvus import MilvusClient
+from altk.pre_llm.core.types import TopicInfo
 from altk.pre_llm.routing_toolkit.elapsed_time_logger import processing_time_logger
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
+from altk.pre_llm.core.types import (
     RetrievedTopic,
-    TopicInfo,
 )
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.milvus.common import (
     AnnSearchConfig,

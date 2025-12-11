@@ -1,10 +1,9 @@
 from typing import Dict, List, Literal
 from bertopic import BERTopic
 from pydantic import BaseModel
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
-    TopicExtractionBuildOutput,
+from altk.pre_llm.core.types import TopicExtractionBuildOutput, TopicInfo
+from altk.pre_llm.core.types import (
     TopicExtractionInput,
-    TopicInfo,
 )
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_extractor.tfidf_words import (
     CountVectorizerSettings,

@@ -3,12 +3,12 @@ import logging
 from chromadb.api import ClientAPI
 from chromadb.api.types import GetResult
 
+from altk.pre_llm.core.types import TopicExtractionBuildOutput
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.topic_sink_content_provider import (
     ChromaDBProvider,
     TopicExtractionMiddleware,
 )
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
-    TopicExtractionBuildOutput,
+from altk.pre_llm.core.types import (
     TopicExtractionInput,
 )
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_extractor.settings import (

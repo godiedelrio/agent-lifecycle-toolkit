@@ -3,9 +3,8 @@ from typing import Callable, List
 
 from chromadb.api import ClientAPI
 from altk.core.toolkit import AgentPhase
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
-    RetrievedTopic,
-    TopicInfo,
+from altk.pre_llm.core.types import RetrievedTopic, TopicInfo, TopicRetrievalRunOutput
+from altk.pre_llm.core.types import (
     TopicRetrievalRunInput,
 )
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.topic_retriever import (
@@ -16,7 +15,6 @@ from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_retriever.s
 )
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_retriever.topic_retriever import (
     TopicRetrievalMiddleware,
-    TopicRetrievalRunOutput,
 )
 
 

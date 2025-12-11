@@ -1,9 +1,8 @@
 from typing import Dict, Optional
 from pydantic import BaseModel
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
-    TopicExtractionBuildOutput,
+from altk.pre_llm.core.types import TopicExtractionBuildOutput, TopicInfo
+from altk.pre_llm.core.types import (
     TopicExtractionInput,
-    TopicInfo,
 )
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 import numpy as np

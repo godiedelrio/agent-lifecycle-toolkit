@@ -7,7 +7,7 @@ from chromadb.api.types import GetResult
 from chromadb.config import Settings
 from altk.core.toolkit import AgentPhase
 from altk.core.llm import get_llm
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
+from altk.pre_llm.core.types import (
     TopicExtractionBuildOutput,
 )
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_extractor.llm import (

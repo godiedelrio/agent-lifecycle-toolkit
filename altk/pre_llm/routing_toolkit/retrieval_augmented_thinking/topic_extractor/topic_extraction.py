@@ -1,6 +1,6 @@
 import logging
 from altk.core.toolkit import AgentPhase
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
+from altk.pre_llm.core.types import (
     TopicExtractionBuildOutput,
 )
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_extractor.settings import (
