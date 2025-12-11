@@ -1,6 +1,6 @@
 # Retrieval Augmented Thinking
 
-A middleware solution to improve routing accuracy for manager agents that contain "difficult-to-describe" collaborator agents, such as those implement RAG.  [Retrieval-Augmented Thinking](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/pre_llm/routing_toolkit/retrieval_augmented_thinking) is made up of both a  **build-time** component (extracting topics of expertise) and a **run-time** component (Retrieval Agumented Thinking) to improve collaborator selection.
+A middleware solution to improve routing accuracy for manager agents that contain "difficult-to-describe" collaborator agents, such as those implement RAG. [Retrieval-Augmented Thinking](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/pre_llm/routing_toolkit/retrieval_augmented_thinking) is made up of both a  **build-time** component (extracting topics of expertise) and a **run-time** component (Retrieval Agumented Thinking) to improve collaborator selection.
 
 
 ## Table of Contents
