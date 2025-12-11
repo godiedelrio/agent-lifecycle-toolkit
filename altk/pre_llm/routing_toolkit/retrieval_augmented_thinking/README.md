@@ -42,7 +42,7 @@ Simply select a RAT-enabled WxO Style for your agent to leverage Retrieval-Augme
 
 ## Quick Start
 
-1. Extract topics for a hypothetical tool that knows about sound (tool_sound) using documents from a ChromaDB in the collection "sound" and stored them in the "topics" collection.
+1. Extract the topics of expertise for a hypothetical tool that knows about sound (`tool_sound`) from documents stored in a ChromaDB collection "sound" and store the extracted topics in the "topics" collection. In the topic extraction, the "subject" is the name of the tools for which the topics are being extracted.
 ```python
 import os
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.topic_sink_content_provider import (
@@ -88,7 +88,31 @@ print(f"{topic_extraction_output.error=}")
 print(f"{topic_extraction_output.topics}")
 ```
 
-2. In your agent that includes the `tool_sound` among others, use a Topic Retriever to retrieve topics that are similar to the user query and used them to create tool hints that can be added to the agent prompt.
+If you need to extract topics for other tools used by the agent this process must be repeated creating a Topic Extractor for each tool. The following code asumes the collections containing the documents for each tool are all in the same Chroma DB instance:
+```python
+collections = {"tool_1": "coll_1", "tool_2": "coll_2"}
+topics_sink = ChromaDBProvider(db_path="/path/to/local/chroma", collection="topics")
+for tool in collections.keys():
+    topic_extractor = LLMTopicExtractor(
+        content_provider=ChromaDBProvider(
+            collection=collections[tool], db_path="/path/to/local/chroma"
+        ),
+        llm_client=llm_client,
+    )
+    topic_extractor_extraction = TopicExtractionMiddleware(
+        subject=tool,
+        topic_extractor=topic_extractor,
+        topics_sink=topics_sink,
+    )
+    topic_extraction_output: TopicExtractionBuildOutput = (
+        topic_extractor_extraction.process(data=None, phase=AgentPhase.BUILDTIME)
+    )
+    print(f"Topic extraction for tool {tool}")
+    print(f"{topic_extraction_output.error=}")
+    print(f"{topic_extraction_output.topics}")
+```
+
+2. In your agent that uses the `tool_sound` tool, when a query comes in use a Topic Retriever to retrieve the topics of expertise that are similar to the query and use them to create tool hints that can be added to the agent prompt.
 
 ```python
 from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.topic_retriever import (
@@ -106,7 +130,7 @@ from altk.core.toolkit import AgentPhase
 
 topic_retriever = TopicRetrievalMiddleware(
     topic_retriever=ChromaDBTopicRetriever(
-        db_path="/Users/diego/chroma", collection="topics"
+        db_path="/path/to/local/chroma", collection="topics"
     )
 )
 topic_retriever_ouput: TopicRetrievalRunOutput = topic_retriever.process(
@@ -123,10 +147,10 @@ hints = "\n".join(
         for retrieved_topic in topic_retriever_ouput.topics
     }
 )
-prompt_fragment = f"Here are some hints to use when thinking about which tool might be best to help:\n{hints}"
-print(prompt_fragment)
+hints_prompt_fragment = f"Here are some hints to use when thinking about which tool might be best to help:\n{hints}"
+print(hints_prompt_fragment)
 ```
-This results in the following prompt fragment that can be injected in the agent's prompt:
+The following is a prompt fragment with tool hints using the retrieved topics that can be injected into the agent's prompt:
 ```
 Here are some hints to use when thinking about which tool might be best to help:
 tool_sound: hearing a sound
@@ -146,4 +170,4 @@ tool_sound: auditory perception
 Apache 2.0 - see LICENSE file for details.
 
 ## Under the Hood
-For more details on the technology behind this component, the architecture, experimental results, and its usage, refer to our [documentation](https://agenttoolkit.github.io/agent-lifecycle-toolkit/concepts/components/rat/).
+For more details on the architecture, experimental results, and its usage, refer to our [documentation](https://agenttoolkit.github.io/agent-lifecycle-toolkit/concepts/components/rat/).

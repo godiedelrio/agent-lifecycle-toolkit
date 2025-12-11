@@ -39,7 +39,7 @@ The Agent Lifecycle Toolkit helps agent builders create better performing agents
 - *Does your agent not follow instructions?*
 <br> [Spotlight](https://agenttoolkit.github.io/agent-lifecycle-toolkit/concepts/components/spotlight/) emphasizes important spans in prompts to steer LLM attention.
 - *Does your agent struggle to route to the right tool?*
-<br> [Retrieval Augmented Thinking](https://github.com/godiedelrio/agent-lifecycle-toolkit/tree/ddr/routing_toolkit/altk/pre_llm/routing_toolkit/retrieval_augmented_thinking) provides your agent with tool hints generated from tool domain content.
+<br> [Retrieval Augmented Thinking](concepts/components/rat/) provides your agent with tool hints generated from tool domain content.
 - *Does your agent generate inconsistent tool sequences?*
 <br> [Refraction](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/pre_tool/refraction) validates and repairs tool call syntax to prevent execution failures.
 - *Is your agent calling tools with hallucinated arguments or struggling to choose the correct tools in the right order?*
