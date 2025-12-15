@@ -1,6 +1,6 @@
 # Retrieval Augmented Thinking
 
-A middleware solution to improve routing accuracy for manager agents that contain "difficult-to-describe" collaborator agents, such as those implement RAG. [Retrieval-Augmented Thinking](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/pre_llm/routing_toolkit/retrieval_augmented_thinking) is made up of both a  **build-time** component (extracting topics of expertise) and a **run-time** component (Retrieval Agumented Thinking) to improve collaborator selection.
+A middleware solution to improve routing accuracy for manager agents that contain "difficult-to-describe" collaborator agents, such as those implement RAG. [Retrieval-Augmented Thinking](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/pre_llm/routing/retrieval_augmented_thinking) is made up of both a  **build-time** component (extracting topics of expertise) and a **run-time** component (Retrieval Agumented Thinking) to improve collaborator selection.
 
 
 ## Table of Contents
@@ -48,7 +48,7 @@ We evaluated Retrieve-And-Think using an AskHR dataset, where a ReACT-based mana
 |React with RAT | 79% | 84%|
 
 ## Getting Started
-Go to our GitHub repo and get the code running by following the instructions in the [README](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/pre_llm/routing_toolkit/retrieval_augmented_thinking/README.md).
+Go to our GitHub repo and get the code running by following the instructions in the [README](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/pre_llm/routing/retrieval_augmented_thinking/README.md).
 
 
 ## Topic Extraction
@@ -68,7 +68,7 @@ Topics can be extracted with the following topic extractors:
 
 The extracted topics can be stored in Milvus and Chroma DB using the following topic sinks:
 
-* [`altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.topic_sink_content_provider.ChromaDBProvider`](#chromadbprovider). Stores the topics in a ChromaDB instance
+* [`altk.pre_llm.routing.retrieval_augmented_thinking.chroma.topic_sink_content_provider.ChromaDBProvider`](#chromadbprovider). Stores the topics in a ChromaDB instance
 * [`altk.routing_toolkit.retrieval_augmented_thinking.chroma.topic_sink.MilvusProvider`](#milvusprovider). Stores the topics in a MilvusDB instance
 
 ### LLM Topic Extractor
@@ -80,10 +80,10 @@ In the following example the LLM Topic Extractor gets documents from a ChromaDB,
 
 ```python
 import os
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.topic_sink_content_provider import ChromaDBProvider
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import TopicExtractionBuildOutput
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_extractor.llm import LLMTopicExtractor, LLMTopicExtractorOutput
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_extractor.topic_extractor import TopicExtractionMiddleware
+from altk.pre_llm.routing.retrieval_augmented_thinking.chroma.topic_sink_content_provider import ChromaDBProvider
+from altk.pre_llm.routing.retrieval_augmented_thinking.core.toolkit import TopicExtractionBuildOutput
+from altk.pre_llm.routing.retrieval_augmented_thinking.topic_extractor.llm import LLMTopicExtractor, LLMTopicExtractorOutput
+from altk.pre_llm.routing.retrieval_augmented_thinking.topic_extractor.topic_extractor import TopicExtractionMiddleware
 from altk.core.llm.base import get_llm
 from altk.core.toolkit import AgentPhase
 
@@ -123,17 +123,17 @@ As this type of topic extractor does not use an externally hosted model there's 
 In the following example the extracted topics are stored in the collection `sound.topics` in a local ChromaDB instance whose configuration is specified in the Topic Sink configuration under the `topics_sink` key. There's no need to specify a Content Provider configuration since the BERTTopic extractor receives the documents directly as an input parameter.
 
 ```python
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.topic_sink_content_provider import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.chroma.topic_sink_content_provider import (
     ChromaDBProvider,
 )
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.core.toolkit import (
     TopicExtractionInput,
     TopicExtractionBuildOutput,
 )
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_extractor.bertopic import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.topic_extractor.bertopic import (
     BERTopicTopicExtractor,
 )
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_extractor.topic_extractor import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.topic_extractor.topic_extractor import (
     TopicExtractionMiddleware,
 )
 from altk.core.toolkit import AgentPhase
@@ -167,17 +167,17 @@ print(f"{topic_extraction_output.topics}")
 ### TFIDF words Topic Extractor
 In this example an `TFIDFWordsTopicExtractor` is used that is instantiated in a similar way than the `BERTopicTopicExtractor`.
 ```python
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.topic_sink_content_provider import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.chroma.topic_sink_content_provider import (
     ChromaDBProvider,
 )
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.core.toolkit import (
     TopicExtractionInput,
     TopicExtractionBuildOutput,
 )
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_extractor.tfidf_words import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.topic_extractor.tfidf_words import (
     TFIDFWordsTopicExtractor,
 )
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_extractor.topic_extractor import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.topic_extractor.topic_extractor import (
     TopicExtractionMiddleware,
 )
 from altk.core.toolkit import AgentPhase
@@ -219,20 +219,20 @@ You need to run the following scripts from the root of the ALTK repository.
 export WX_API_KEY=...
 export WX_PROJECT_ID=...
 export WX_URL=https://us-south.ml.cloud.ibm.com⁄
-python altk/pre_llm/routing_toolkit/retrieval_augmented_thinking/examples/run_llm_topic_extraction.py
+python altk/pre_llm/routing/retrieval_augmented_thinking/examples/run_llm_topic_extraction.py
 
 # LLM topic extraction example that gets documents from a Chroma DB and stores extracted topics in a Milvus vector store
-python altk/pre_llm/routing_toolkit/retrieval_augmented_thinking/examples/run_llm_topic_extraction_milvus_sink.py
+python altk/pre_llm/routing/retrieval_augmented_thinking/examples/run_llm_topic_extraction_milvus_sink.py
 
 # BERTopic topic extraction example
-python altk/pre_llm/routing_toolkit/retrieval_augmented_thinking/examples/run_berttopic_topic_extraction.py
+python altk/pre_llm/routing/retrieval_augmented_thinking/examples/run_berttopic_topic_extraction.py
 
 # TFIDF words topic extraction example
-python altk/pre_llm/routing_toolkit/retrieval_augmented_thinking/examples/run_tfidf_words_topic_extraction.py
+python altk/pre_llm/routing/retrieval_augmented_thinking/examples/run_tfidf_words_topic_extraction.py
 ```
 
 ### Topic Extraction cli
-The component provides the cli `altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_extractor.cli` that allows to:
+The component provides the cli `altk.pre_llm.routing.retrieval_augmented_thinking.topic_extractor.cli` that allows to:
 
 * extract topics using an LLM topic extractor from a set of collections stored in a local Chroma DB
 * store the extracted topics in a local Chroma DB
@@ -241,7 +241,7 @@ A json file with the topic extraction settings must be provided.
 
 In the following example:
 ```
-python -m altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_extractor.cli --topic_extractor llm --topic_extraction_config topic_extraction.json
+python -m altk.pre_llm.routing.retrieval_augmented_thinking.topic_extractor.cli --topic_extractor llm --topic_extraction_config topic_extraction.json
 ```
 using these topic extraction settings form the `topic_extraction.json` file:
 ```json
@@ -250,7 +250,7 @@ using these topic extraction settings form the `topic_extraction.json` file:
     "provider": "watsonx",
     "levels_of_expertise": true,
     "content_provider": {
-        "name": "altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.topic_sink_content_provider.ChromaDBProvider",
+        "name": "altk.pre_llm.routing.retrieval_augmented_thinking.chroma.topic_sink_content_provider.ChromaDBProvider",
         "config": {
             "collections": [
                 "tool_1",
@@ -263,7 +263,7 @@ using these topic extraction settings form the `topic_extraction.json` file:
         }
     },
     "topics_sink": {
-        "name": "altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.topic_sink_content_provider.ChromaDBProvider",
+        "name": "altk.pre_llm.routing.retrieval_augmented_thinking.chroma.topic_sink_content_provider.ChromaDBProvider",
         "config": {
             "collection": "topics",
             "instance": {
@@ -296,8 +296,8 @@ A `ContentProvider` that gets the content chunks from a ChromaDB vector store. I
 
 ### Custom Content Provider implementation
 To create a custom content provider follow these steps:
-1. Define a Pydantic model that serves as a config object for the custom content provider implementation, e.g. `MyContentProviderSettings`. You can refer to the [ChromaDBProviderSettings](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/pre_llm/routing_toolkit/retrieval_augmented_thinking/chroma/topic_sink_content_provider.py#L37) object as an example.
-2. Create the class that implements the [`ContentProvider` protocol](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/pre_llm/routing_toolkit/retrieval_augmented_thinking/core/toolkit.py#L99). The class must have a method `def get_content(self) -> Iterator[str]` that provides a stream of content chunks.
+1. Define a Pydantic model that serves as a config object for the custom content provider implementation, e.g. `MyContentProviderSettings`. You can refer to the [ChromaDBProviderSettings](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/pre_llm/routing/retrieval_augmented_thinking/chroma/topic_sink_content_provider.py#L37) object as an example.
+2. Create the class that implements the [`ContentProvider` protocol](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/pre_llm/routing/retrieval_augmented_thinking/core/toolkit.py#L99). The class must have a method `def get_content(self) -> Iterator[str]` that provides a stream of content chunks.
 3. The class must also have a class method named `create_content_provider` that receives the config object and creates an instance of the topic sink
    ```python
     @classmethod
@@ -324,7 +324,7 @@ A `ChromaDBProvider` object can also be used as a `TopicsSink`. If the same Chro
 * `full_text_search_config`: if specified the topics will be stored so they can be queried using [Milvus full text search](https://milvus.io/docs/full-text-search.md). The following settings can be specified:
   - `topic_field_max_length`: length of the field that stores the "topic" text
   - `subject_field_max_length`: length of the field that stores the "subject" text
-  - `sparse_index_params`: dictionary with the sparse index parameters. You can look at the [default config object](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/pre_llm/routing_toolkit/retrieval_augmented_thinking/milvus/common.py#L19-L23) to see what settings can be set.
+  - `sparse_index_params`: dictionary with the sparse index parameters. You can look at the [default config object](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/pre_llm/routing/retrieval_augmented_thinking/milvus/common.py#L19-L23) to see what settings can be set.
 * `ann_search_config`: if specified the topics will be stored so they can be queried using the usual semantic search. The following settings can be specified:
   - `topic_field_max_length`: length of the field that stores the "topic" text
   - `subject_field_max_length`: length of the field that stores the "subject" text
@@ -337,8 +337,8 @@ A `ChromaDBProvider` object can also be used as a `TopicsSink`. If the same Chro
 
 ### Custom Topics Sink implementation
 To create a custom topic sink follow these steps:
-1. Define a Pydantic model that serves as a config object for the custom Topic Sink implementation. You can refer to the [`ChromaDBProviderSettings` object](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/pre_llm/routing_toolkit/retrieval_augmented_thinking/chroma/topic_sink_content_provider.py#L36-L93) as an example.
-2. Create the class that implements the [`TopicSink` protocol](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/pre_llm/routing_toolkit/retrieval_augmented_thinking/core/toolkit.py#L87-L95). The class must implement the method `def add_topics(self, topics: List[TopicInfo])` that stores the `TopicInfo` objects in whatever storage mechanism your custom implementation has.
+1. Define a Pydantic model that serves as a config object for the custom Topic Sink implementation. You can refer to the [`ChromaDBProviderSettings` object](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/pre_llm/routing/retrieval_augmented_thinking/chroma/topic_sink_content_provider.py#L36-L93) as an example.
+2. Create the class that implements the [`TopicSink` protocol](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/pre_llm/routing/retrieval_augmented_thinking/core/toolkit.py#L87-L95). The class must implement the method `def add_topics(self, topics: List[TopicInfo])` that stores the `TopicInfo` objects in whatever storage mechanism your custom implementation has.
 3. The class must have a class method named `create_topics_sink` that receives the config object and creates an instance of the topic sink
    ```python
     @classmethod
@@ -362,7 +362,7 @@ To create a custom topic sink follow these steps:
             "model_id": "ibm/granite-3-3-8b-instruct",
             "provider": "watsonx",
             "content_provider": {
-                "name": "altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.topic_sink_content_provider.ChromaDBProvider",
+                "name": "altk.pre_llm.routing.retrieval_augmented_thinking.chroma.topic_sink_content_provider.ChromaDBProvider",
                 "config": {
                     "collection": "sound",
                     "dest_collection": "sound.topics",
@@ -402,9 +402,9 @@ We'll explain the topic loading using the following example:
 ```python
 from sentence_transformers import SentenceTransformer
 from altk.core.toolkit import AgentPhase
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import EmbeddedTopic, TopicInfo, TopicLoadingInput
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_loading.topic_loading import TopicLoadingMiddleware
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_extractor.chromadb import ChromaDBProvider
+from altk.pre_llm.routing.retrieval_augmented_thinking.core.toolkit import EmbeddedTopic, TopicInfo, TopicLoadingInput
+from altk.pre_llm.routing.retrieval_augmented_thinking.topic_loading.topic_loading import TopicLoadingMiddleware
+from altk.pre_llm.routing.retrieval_augmented_thinking.topic_extractor.chromadb import ChromaDBProvider
 from chromadb.utils import embedding_functions
 
 embedding_model_name = "ibm-granite/granite-embedding-107m-multilingual"
@@ -446,9 +446,9 @@ topic_loading.process(
 Alternatively instead of calculating the embeddings beforehand, the embedding function can be specified in the `TopicsSink`:
 ```python
 from altk.core.toolkit import AgentPhase
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import EmbeddedTopic, TopicInfo, TopicLoadingInput
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_loading.topic_loading import TopicLoadingMiddleware
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_extractor.chromadb import ChromaDBProvider
+from altk.pre_llm.routing.retrieval_augmented_thinking.core.toolkit import EmbeddedTopic, TopicInfo, TopicLoadingInput
+from altk.pre_llm.routing.retrieval_augmented_thinking.topic_loading.topic_loading import TopicLoadingMiddleware
+from altk.pre_llm.routing.retrieval_augmented_thinking.topic_extractor.chromadb import ChromaDBProvider
 from chromadb.utils import embedding_functions
 
 topics = [
@@ -513,14 +513,14 @@ The topic retriever is a run time component that retrieves the topics from diffe
 In the following example a `ChromaDBTopicRetriever` will do a semantic search on the topics stored in the `topics` collection for the query "What are my job responsibilities?".
 
 ```python
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.topic_retriever import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.chroma.topic_retriever import (
     ChromaDBTopicRetriever,
 )
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.core.toolkit import (
     TopicRetrievalRunInput,
     TopicRetrievalRunOutput,
 )
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_retriever.topic_retriever import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.topic_retriever.topic_retriever import (
     TopicRetrievalMiddleware,
 )
 from altk.core.toolkit import AgentPhase
@@ -543,14 +543,14 @@ print(f"{topic_retriever_ouput.topics}")
 
 In the next example a `MilvusTopicRetriever` is used to retrieve topics from a Milvus vector store.
 ```python
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.core.toolkit import (
     TopicRetrievalRunInput,
     TopicRetrievalRunOutput,
 )
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.milvus.topic_retriever import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.milvus.topic_retriever import (
     MilvusTopicRetriever,
 )
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_retriever.topic_retriever import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.topic_retriever.topic_retriever import (
     TopicRetrievalMiddleware,
 )
 from altk.core.toolkit import AgentPhase
@@ -572,17 +572,17 @@ print(f"{topic_retriever_ouput.topics}")
 ```
 By default the Milvus retriever will use [full text search](https://milvus.io/docs/full-text-search.md) to query the topics. If the topics were stored to be queried using semantic search instead, you need to provide the semantic search config in the `ann_search_config` parameter:
 ```python
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.core.toolkit import (
     TopicRetrievalRunInput,
     TopicRetrievalRunOutput,
 )
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.milvus.common import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.milvus.common import (
     AnnSearchConfig,
 )
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.milvus.topic_retriever import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.milvus.topic_retriever import (
     MilvusTopicRetriever,
 )
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_retriever.topic_retriever import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.topic_retriever.topic_retriever import (
     TopicRetrievalMiddleware,
 )
 from altk.core.toolkit import AgentPhase
@@ -627,18 +627,18 @@ When using the Topic Retriever, topics can be filtered by their `subject` and `e
 In the following example ChromaDB is used first to load the topics and then to retrieve them. The topics have metadata fields representing an hypothetical software development environment where they can be used. During topic retrieval a ChromaDB metadata filtering expression is used to get the topics that can be used in any of the environments `["live", "dark_lunch"]`.
 ```python
 from sentence_transformers import SentenceTransformer
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.topic_retriever import ChromaDBTopicRetriever
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.topic_sink_content_provider import ChromaDBProvider
+from altk.pre_llm.routing.retrieval_augmented_thinking.chroma.topic_retriever import ChromaDBTopicRetriever
+from altk.pre_llm.routing.retrieval_augmented_thinking.chroma.topic_sink_content_provider import ChromaDBProvider
 from altk.core.toolkit import AgentPhase
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.core.toolkit import (
     EmbeddedTopic,
     TopicInfo,
     TopicLoadingInput,
     TopicRetrievalRunInput,
     TopicRetrievalRunOutput,
 )
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_loading.topic_loading import TopicLoadingMiddleware
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_retriever.topic_retriever import TopicRetrievalMiddleware
+from altk.pre_llm.routing.retrieval_augmented_thinking.topic_loading.topic_loading import TopicLoadingMiddleware
+from altk.pre_llm.routing.retrieval_augmented_thinking.topic_retriever.topic_retriever import TopicRetrievalMiddleware
 from chromadb import PersistentClient
 
 embedding_model_name = "ibm-granite/granite-embedding-107m-multilingual"
@@ -695,22 +695,22 @@ print(topic_retriever_ouput.topics)
 
 In the following example the topics are loaded and retrieved from a Milvus vector store. During retrieval Milvus first applies the filter condition and then does the full text search on the topics that match the condition:
 ```python
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.core.toolkit import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.core.toolkit import (
     TopicInfo,
     TopicLoadingInput,
     TopicRetrievalRunInput,
     TopicRetrievalRunOutput,
 )
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.milvus.topic_retriever import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.milvus.topic_retriever import (
     MilvusTopicRetriever,
 )
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.milvus.topic_sink import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.milvus.topic_sink import (
     MilvusProvider,
 )
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_loading.topic_loading import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.topic_loading.topic_loading import (
     TopicLoadingMiddleware,
 )
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.topic_retriever.topic_retriever import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.topic_retriever.topic_retriever import (
     TopicRetrievalMiddleware,
 )
 from altk.core.toolkit import AgentPhase
@@ -756,7 +756,7 @@ topic_retriever_ouput: TopicRetrievalRunOutput = topic_retriever.process(
 Retrieves topics from a ChromaDB instance.
 To use a persistent ChromaDB that runs in the same process where your code runs:
 ```python
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.topic_retriever import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.chroma.topic_retriever import (
     ChromaDBTopicRetriever,
 )
 
@@ -767,7 +767,7 @@ topic_retriever = ChromaDBTopicRetriever(
 ```
 To use a remote ChromaDB:
 ```python
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.topic_retriever import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.chroma.topic_retriever import (
     ChromaDBTopicRetriever,
 )
 
@@ -778,7 +778,7 @@ topic_retriever = ChromaDBTopicRetriever(
 ```
 An EphemeralClient ChromaDB that is detroyed when the process ends can be used for quickly prototyping:
 ```python
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.chroma.topic_retriever import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.chroma.topic_retriever import (
     ChromaDBTopicRetriever,
 )
 from chromadb import EphemeralClient
@@ -793,7 +793,7 @@ Retrieves topics objects from a Milvus vector store.
 
 To use a Milvus Lite instance:
 ```python
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.milvus.topic_retriever import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.milvus.topic_retriever import (
     MilvusTopicRetriever,
 )
 
@@ -805,7 +805,7 @@ topic_retriever = MilvusTopicRetriever(
 ```
 To use a remote Milvus instance:
 ```python
-from altk.pre_llm.routing_toolkit.retrieval_augmented_thinking.milvus.topic_retriever import (
+from altk.pre_llm.routing.retrieval_augmented_thinking.milvus.topic_retriever import (
     MilvusTopicRetriever,
 )
 
@@ -818,13 +818,13 @@ topic_retriever = MilvusTopicRetriever(
 ### Custom Topic Retriever implementation
 To create a custom Topic Retriever follow these steps:
 
-1. Define a Pydantic model that serves as a config object, you can refer to the [`MilvusTopicRetrieverConfig` object](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/pre_llm/routing_toolkit/retrieval_augmented_thinking/milvus/topic_retriever.py#L24) as an example
+1. Define a Pydantic model that serves as a config object, you can refer to the [`MilvusTopicRetrieverConfig` object](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/pre_llm/routing/retrieval_augmented_thinking/milvus/topic_retriever.py#L24) as an example
 2. The class must have a class method that receives the config object and creates an instance of the topic retriever
    ```python
    @classmethod
    def from_settings(cls, settings: MyTopicRetrieverConfig) -> TopicRetriever:
    ```
-3. The class must implement the [`TopicRetriever` protocol](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/pre_llm/routing_toolkit/retrieval_augmented_thinking/core/toolkit.py#L121) that requires a method `def get_topics(self, query: str, n_results: int = 10) -> List[TopicInfo]` that returns the topics for a user utterance
+3. The class must implement the [`TopicRetriever` protocol](https://github.com/AgentToolkit/agent-lifecycle-toolkit/tree/main/altk/pre_llm/routing/retrieval_augmented_thinking/core/toolkit.py#L121) that requires a method `def get_topics(self, query: str, n_results: int = 10) -> List[TopicInfo]` that returns the topics for a user utterance
 4. Register the implementation with a name, decorating the class like in the following example, where the implementation is registered under the name `my_topic_retriever`:
    ```python
       @topic_retriever.register("my_topic_retriever")
